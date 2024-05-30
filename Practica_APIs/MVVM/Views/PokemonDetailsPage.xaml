@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Practica_APIs.MVVM.Views.PokemonDetailsPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Image Source="{Binding SelectedPokemon.ImgUrl}" WidthRequest="200" HeightRequest="200"/>
+                <Label Text="{Binding SelectedPokemon.Name}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontSize="30"
+                       FontAttributes="Bold"/>
+                <Label Text="Habilidades"
+                       FontSize="25"
+                       FontAttributes="Italic"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                <ListView ItemsSource="{Binding SelectedPokemon.abilities}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="{Binding ability.name}"
+                                       VerticalOptions="Center"
+                                       FontSize="20"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Text="Cerrar" 
+                        Command="{Binding CloseCommand}" 
+                        HorizontalOptions="Fill" 
+                        VerticalOptions="Center" 
+                        Margin="15"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

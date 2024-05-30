@@ -1,23 +1,16 @@
-﻿namespace Practica_APIs;
+﻿using Practica_APIs.MVVM.Views;
+
+namespace Practica_APIs;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
-
     public MainPage()
     {
         InitializeComponent();
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
+    private void GoToDashboard(object sender, EventArgs e)
     {
-        count++;
-
-        if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
-        else
-            CounterBtn.Text = $"Clicked {count} times";
-
-        SemanticScreenReader.Announce(CounterBtn.Text);
+        Navigation.PushAsync(new VDashboard());
     }
 }
