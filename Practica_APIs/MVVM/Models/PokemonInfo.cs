@@ -14,6 +14,7 @@ public class PokemonInfo
     
     public List<Ability> abilities { get; set; }
     
+    public List<Type> types { get; set; }
     public string ImgUrl { get; set; }
     public int Index { get; set; }
 

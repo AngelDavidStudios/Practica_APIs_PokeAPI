@@ -34,7 +34,8 @@ public class PokeAPIService
             { 
                 Name = p.Name, 
                 ImgUrl = GetImageUrlFromUrl(p.Url),
-                abilities = pokemonDetails.abilities
+                abilities = pokemonDetails.abilities,
+                types = pokemonDetails.types
             });
         }
 

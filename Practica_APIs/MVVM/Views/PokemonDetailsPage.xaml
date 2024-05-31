@@ -2,7 +2,15 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Practica_APIs.MVVM.Views.PokemonDetailsPage">
+             x:Class="Practica_APIs.MVVM.Views.PokemonDetailsPage"
+             xmlns:converters="clr-namespace:Practica_APIs.Converters">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TypeToColorConverter x:Key="TypeToColor"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -17,17 +25,40 @@
                        FontAttributes="Italic"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"/>
-                <ListView ItemsSource="{Binding SelectedPokemon.abilities}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Label Text="{Binding ability.name}"
-                                       VerticalOptions="Center"
-                                       FontSize="20"/>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                
+                <StackLayout>
+                    <ListView ItemsSource="{Binding SelectedPokemon.abilities}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label Text="{Binding ability.name}"
+                                           VerticalOptions="Center"
+                                           FontSize="20"/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                
+                <StackLayout HorizontalOptions="Start"
+                             VerticalOptions="Start">
+                    <CollectionView ItemsSource="{Binding SelectedPokemon.types}"
+                                    ItemsLayout="HorizontalList"
+                                    HeightRequest="40">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="10" 
+                                       Margin="5" 
+                                       BackgroundColor="{Binding type.name, Converter={StaticResource TypeToColor}}">
+                                    <Label Text="{Binding type.name}"
+                                           TextColor="White"
+                                           FontSize="16"/>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+                
                 <Button Text="Cerrar" 
                         Command="{Binding CloseCommand}" 
                         HorizontalOptions="Fill" 
